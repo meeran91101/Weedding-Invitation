@@ -1,0 +1,1141 @@
+:root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E6B8;
+    --gold-dark: #8A6A1F;
+    --cream: #FDF8EE;
+    --cream-dark: #F5EDD8;
+    --green-dark: #1A3A2A;
+    --green-mid: #2D6145;
+    --green-light: #4A8F6A;
+    --green-pale: #E8F5EE;
+    --white: #FFFFFF;
+    --text-dark: #1A1A1A;
+    --text-mid: #3D3D3D;
+    --text-light: #7A6A50;
+    --border-gold: rgba(201,168,76,0.4);
+    --shadow-gold: rgba(201,168,76,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--green-dark);
+    font-family: 'Noto Sans Tamil', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ===== ANIMATED BACKGROUND ===== */
+  .bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse at 20% 20%, #0D2B1E 0%, #1A3A2A 40%, #0A1F15 100%);
+    overflow: hidden;
+  }
+
+  .bg-canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 85%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 85% 15%, rgba(201,168,76,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(45,97,69,0.3) 0%, transparent 70%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgPulse {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.05); }
+  }
+
+  /* Floating particles */
+  .particle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatUp linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes floatUp {
+    0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-20vh) rotate(720deg); }
+  }
+
+  /* ===== MAIN WRAPPER ===== */
+  .page-wrapper {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  /* ===== INVITATION CARD ===== */
+  .invitation-card {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 4px;
+    position: relative;
+    box-shadow:
+      0 0 0 1px var(--gold-dark),
+      0 0 0 4px rgba(201,168,76,0.15),
+      0 0 60px rgba(0,0,0,0.6),
+      0 0 120px rgba(201,168,76,0.1);
+    animation: cardReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+
+  @keyframes cardReveal {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Gold corner ornaments */
+  .card-corner {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    z-index: 10;
+  }
+  .card-corner.tl { top: -2px; left: -2px; }
+  .card-corner.tr { top: -2px; right: -2px; transform: scaleX(-1); }
+  .card-corner.bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
+  .card-corner.br { bottom: -2px; right: -2px; transform: scale(-1,-1); }
+
+  /* ===== HEADER SECTION ===== */
+  .header-section {
+    background: linear-gradient(180deg, #1A3A2A 0%, #2D6145 50%, #1A3A2A 100%);
+    padding: 50px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .header-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  .bismillah {
+    font-family: 'Scheherazade New', serif;
+    font-size: 32px;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: block;
+    animation: fadeSlideDown 1s 0.3s both;
+    text-shadow: 0 2px 20px rgba(201,168,76,0.4);
+  }
+
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 16px 0;
+    animation: fadeSlideDown 1s 0.5s both;
+  }
+
+  .header-divider-line {
+    height: 1px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .header-divider-gem {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 12px var(--gold);
+  }
+
+  .invitation-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 4vw, 32px);
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 12px 0;
+    line-height: 1.3;
+    animation: fadeSlideDown 1s 0.6s both;
+    text-shadow: 0 0 30px rgba(201,168,76,0.5);
+  }
+
+  .invitation-subtitle-tamil {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 700;
+    color: var(--gold-light);
+    margin: 8px 0;
+    animation: fadeSlideDown 1s 0.7s both;
+  }
+
+  .header-blessing {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    margin: 16px auto 0;
+    line-height: 1.8;
+    animation: fadeSlideDown 1s 0.8s both;
+  }
+
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== BODY CONTENT ===== */
+  .card-body {
+    padding: 0 40px 40px;
+    background: var(--cream);
+  }
+
+  /* ===== INTRO TEXT ===== */
+  .intro-section {
+    padding: 40px 0 30px;
+    text-align: center;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    animation: fadeIn 1s 1s both;
+  }
+
+  .intro-text {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 14px;
+    line-height: 2.2;
+    color: var(--text-mid);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .intro-highlight {
+    color: var(--green-mid);
+    font-weight: 600;
+  }
+
+  .date-badge {
+    display: inline-block;
+    background: var(--green-dark);
+    color: var(--gold-light);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 16px;
+    padding: 12px 32px;
+    border-radius: 2px;
+    margin: 24px 0 8px;
+    letter-spacing: 2px;
+    border: 1px solid var(--gold-dark);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(201,168,76,0.2);
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 20px rgba(201,168,76,0.1); }
+    50% { box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 40px rgba(201,168,76,0.3); }
+  }
+
+  .date-tamil {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold-pale);
+    color: var(--green-dark);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 24px;
+    border-radius: 2px;
+    border: 1px solid var(--gold);
+    margin-top: 8px;
+  }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    text-align: center;
+    margin: 40px 0 32px;
+    animation: fadeIn 1s 1.2s both;
+  }
+
+  .section-title-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--green-dark);
+    color: var(--gold-light);
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 28px;
+    border-radius: 2px;
+    border: 1px solid var(--gold-dark);
+    letter-spacing: 1px;
+  }
+
+  .section-title-gem {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ===== WEDDING CARDS ===== */
+  .weddings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 32px 0;
+    animation: fadeIn 1s 1.4s both;
+  }
+
+  @media (max-width: 680px) {
+    .weddings-grid { grid-template-columns: 1fr; }
+    .card-body { padding: 0 20px 30px; }
+    .header-section { padding: 40px 20px 30px; }
+  }
+
+  .wedding-card {
+    background: white;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+  }
+
+  .wedding-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px var(--gold-dark);
+  }
+
+  .wedding-card-header {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    padding: 28px 24px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wedding-card-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .wedding-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 11px;
+    color: rgba(201,168,76,0.7);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .bride-groom-names {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .person-name {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 700;
+    color: var(--gold-light);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    line-height: 1.2;
+  }
+
+  .weds-heart {
+    width: 36px;
+    height: 36px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: heartBeat 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  .weds-heart svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--gold);
+  }
+
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+  }
+
+  /* Wedding card body */
+  .wedding-card-body {
+    padding: 24px;
+  }
+
+  .family-block {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed rgba(201,168,76,0.2);
+  }
+
+  .family-block:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .family-side-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green-mid);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .family-side-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,168,76,0.3), transparent);
+  }
+
+  .family-member {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    padding-left: 12px;
+    border-left: 2px solid rgba(201,168,76,0.2);
+  }
+
+  .family-member .deceased {
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  .family-member .name-highlight {
+    color: var(--green-dark);
+    font-weight: 600;
+  }
+
+  .bride-groom-main {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: var(--gold-pale);
+    border-radius: 2px;
+    border-left: 3px solid var(--gold);
+    text-align: center;
+  }
+
+  /* ===== EVENTS SECTION ===== */
+  .events-section {
+    margin: 40px 0;
+    animation: fadeIn 1s 1.6s both;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 680px) {
+    .events-grid { grid-template-columns: 1fr; }
+  }
+
+  .event-box {
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+  }
+
+  .event-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .event-box-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .event-box-header.men {
+    background: linear-gradient(135deg, #1A3A2A, #2D6145);
+  }
+
+  .event-box-header.women {
+    background: linear-gradient(135deg, #3D1A2A, #7A3056);
+  }
+
+  .event-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .event-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--gold-light);
+  }
+
+  .event-box-title {
+    color: var(--gold-light);
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .event-box-subtitle {
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .event-box-body {
+    padding: 20px;
+  }
+
+  .event-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  .event-row:last-child { margin-bottom: 0; }
+
+  .event-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold-dark);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    min-width: 56px;
+    padding-top: 2px;
+  }
+
+  .event-value {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 13px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .event-value.highlight {
+    color: var(--green-dark);
+    font-weight: 700;
+  }
+
+  /* ===== HOSTS SECTION ===== */
+  .hosts-section {
+    margin: 40px 0;
+    padding: 36px;
+    background: var(--green-dark);
+    border-radius: 4px;
+    border: 1px solid var(--gold-dark);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s 1.8s both;
+  }
+
+  .hosts-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hosts-title {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold-light);
+    text-align: center;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .hosts-title::before, .hosts-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  }
+
+  .hosts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .hosts-grid { grid-template-columns: 1fr; }
+    .hosts-section { padding: 24px 20px; }
+  }
+
+  .host-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .host-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(201,168,76,0.4);
+  }
+
+  .host-role {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .host-name {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.4;
+  }
+
+  /* ===== DUA SECTION ===== */
+  .dua-section {
+    margin: 40px 0;
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #F5EDD8 0%, #FDF8EE 50%, #F5EDD8 100%);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s 2s both;
+  }
+
+  .dua-section::before, .dua-section::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 50%;
+  }
+
+  .dua-section::before { top: -40px; left: -40px; }
+  .dua-section::after { bottom: -40px; right: -40px; }
+
+  .arabic-dua {
+    font-family: 'Scheherazade New', serif;
+    font-size: 28px;
+    color: var(--green-dark);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    direction: rtl;
+  }
+
+  .dua-translation {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 2;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(201,168,76,0.15);
+    font-style: italic;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-section {
+    text-align: center;
+    padding: 30px 0 10px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    animation: fadeIn 1s 2.2s both;
+  }
+
+  .contact-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 18px;
+    color: var(--green-dark);
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 14px 32px;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .contact-phone:hover {
+    background: var(--gold-light);
+    transform: scale(1.02);
+  }
+
+  .contact-phone svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--green-dark);
+  }
+
+  /* ===== FOOTER ===== */
+  .card-footer {
+    background: var(--green-dark);
+    padding: 24px 40px;
+    text-align: center;
+    border-top: 1px solid var(--gold-dark);
+    border-radius: 0 0 4px 4px;
+    animation: fadeIn 1s 2.4s both;
+  }
+
+  .footer-verse {
+    font-family: 'Scheherazade New', serif;
+    font-size: 22px;
+    color: var(--gold-light);
+    direction: rtl;
+    margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(201,168,76,0.3);
+  }
+
+  .footer-translation {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== ORNAMENT PATTERNS ===== */
+  .ornament-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+  }
+
+  .ornament-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .ornament-diamond {
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .ornament-line {
+    height: 1px;
+    width: 50px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* ===== INLINE DIVIDER ===== */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .section-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+  }
+
+  .section-divider-center {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  /* ===== FADE ANIMATION ===== */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== SHIMMER EFFECT ===== */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* ===== STAR CRESCENT DECORATION ===== */
+  .islamic-symbol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 20px;
+    animation: rotateStar 20s linear infinite;
+    filter: drop-shadow(0 0 6px rgba(201,168,76,0.5));
+  }
+
+  @keyframes rotateStar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ===== VENUE CARD ===== */
+  .venue-card {
+    background: white;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    padding: 24px;
+    margin-top: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .venue-card:hover { transform: translateX(4px); }
+
+  .venue-icon-wrap {
+    width: 44px;
+    height: 44px;
+    background: var(--green-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .venue-icon-wrap svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--gold-light);
+  }
+
+  .venue-details { flex: 1; }
+
+  .venue-name {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+
+  .venue-address {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* ===== NIKAH BANNER ===== */
+  .nikah-banner {
+    background: linear-gradient(135deg, var(--green-dark), #0D2B1E);
+    border: 1px solid var(--gold-dark);
+    border-radius: 4px;
+    padding: 32px;
+    text-align: center;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s 2s both;
+  }
+
+  .nikah-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center top, rgba(201,168,76,0.1) 0%, transparent 60%);
+  }
+
+  .nikah-date-large {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(24px, 5vw, 40px);
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-shadow: 0 0 40px rgba(201,168,76,0.4);
+    display: block;
+    margin: 12px 0;
+  }
+
+  .nikah-day {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .nikah-time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-top: 8px;
+  }
+
+  /* ===== COUNTDOWN ===== */
+  .countdown-section {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+
+  .countdown-item {
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    padding: 16px 20px;
+    min-width: 70px;
+    transition: border-color 0.3s ease;
+  }
+
+  .countdown-item:hover { border-color: rgba(201,168,76,0.5); }
+
+  .countdown-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 28px;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(201,168,76,0.3);
+  }
+
+  .countdown-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ===== FLORAL BORDER ===== */
+  .floral-border {
+    height: 8px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--gold-dark) 0px,
+      var(--gold-dark) 2px,
+      transparent 2px,
+      transparent 8px,
+      var(--gold) 8px,
+      var(--gold) 10px,
+      transparent 10px,
+      transparent 16px
+    );
+    opacity: 0.4;
+    margin: 0;
+  }
+
+  /* ===== INVITATION NUMBER TAG ===== */
+  .invitation-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: rgba(201,168,76,0.7);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ===== RESPONSIVE FIXES ===== */
+  @media (max-width: 480px) {
+    .weddings-grid, .events-grid { grid-template-columns: 1fr; }
+    .card-body { padding: 0 16px 24px; }
+    .header-section { padding: 36px 16px 28px; }
+    .hosts-grid { grid-template-columns: 1fr; }
+    .dua-section { padding: 28px 16px; }
+    .hosts-section { padding: 24px 16px; }
+    .nikah-banner { padding: 24px 16px; }
+    .countdown-section { gap: 8px; }
+    .countdown-item { padding: 12px 14px; min-width: 60px; }
+  }
+
+
+
+
+
+
+  /* ===== FLOATING LIGHT GLOW ===== */
+.glow-circle {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(201,168,76,0.2), transparent 70%);
+  border-radius: 50%;
+  animation: floatGlow 12s infinite alternate ease-in-out;
+  z-index: 1;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(100px, -80px); }
+}
+
+/* ===== TEXT SHINE EFFECT ===== */
+.shine-text {
+  position: relative;
+  display: inline-block;
+}
+
+.shine-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  animation: shineMove 3s infinite;
+}
+
+@keyframes shineMove {
+  100% { left: 150%; }
+}
+
+/* ===== BUTTON PULSE ===== */
+.contact-phone {
+  animation: pulseBtn 2s infinite;
+}
+
+@keyframes pulseBtn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ===== SMOOTH CARD HOVER ===== */
+.wedding-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* ===== MOBILE IMPROVEMENTS ===== */
+@media (max-width: 480px) {
+  .invitation-title {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .person-name {
+    font-size: 15px;
+  }
+
+  .countdown-number {
+    font-size: 20px;
+  }
+
+  .nikah-date-large {
+    font-size: 26px;
+  }
+
+  .event-value {
+    font-size: 12px;
+  }
+}
