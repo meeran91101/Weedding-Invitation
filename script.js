@@ -179,3 +179,12 @@ document.body.addEventListener('click', function(e) {
   }
 });
 
+
+
+
+
+  // Optional: remove completely after animation
+  setTimeout(() => {
+    const screen = document.getElementById("welcome-screen");
+    if (screen) screen.remove();
+  }, 5000);

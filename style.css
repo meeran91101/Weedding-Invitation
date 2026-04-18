@@ -1139,3 +1139,76 @@
     font-size: 12px;
   }
 }
+
+
+
+
+
+/* ===== WELCOME SCREEN ===== */
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1A3A2A, #0A1F15);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeOutScreen 1.5s ease forwards;
+  animation-delay: 3.5s; /* time before hiding */
+}
+
+/* Content */
+.welcome-content {
+  text-align: center;
+  color: white;
+  animation: zoomIn 1.5s ease;
+}
+
+/* Bismillah */
+.bismillah-text {
+  font-family: 'Scheherazade New', serif;
+  font-size: 36px;
+  color: #E8C97A;
+  margin-bottom: 20px;
+  animation: fadeDown 1s ease;
+}
+
+/* Title */
+.welcome-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 32px;
+  letter-spacing: 3px;
+  color: #C9A84C;
+  animation: fadeUp 1s ease 0.5s both;
+}
+
+/* Subtitle */
+.welcome-sub {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #ddd;
+  animation: fadeUp 1s ease 0.8s both;
+}
+
+/* Animations */
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeOutScreen {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
